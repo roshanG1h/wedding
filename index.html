@@ -735,7 +735,7 @@
               ></i>
               <h2 class="font-serif text-4xl text-cream mb-2">RSVP</h2>
               <p class="text-gold-200">
-                Please confirm your presence by April 31st
+                Please confirm your presence by April 30
               </p>
             </div>
 
@@ -747,6 +747,7 @@
                 >
                 <input
                   type="text"
+                  id="name"
                   class="w-full bg-royal-900 border-b border-gold-500 text-cream px-4 py-3 focus:outline-none focus:border-gold-300 transition-colors"
                   placeholder="Enter your name"
                   required
@@ -759,12 +760,15 @@
                   >Number of Guests</label
                 >
                 <select
+                  id="people"
                   class="w-full bg-royal-900 border-b border-gold-500 text-cream px-4 py-3 focus:outline-none cursor-pointer"
                 >
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
                   <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
                 </select>
               </div>
 
@@ -783,19 +787,12 @@
                     />
                     <span class="ml-2 text-cream">Joyfully Accepts</span>
                   </label>
-                  <label class="flex items-center cursor-pointer">
-                    <input
-                      type="radio"
-                      name="attendance"
-                      class="form-radio text-gold-500 focus:ring-gold-500 bg-royal-900 border-gold-500"
-                    />
-                    <span class="ml-2 text-cream">Regretfully Declines</span>
-                  </label>
                 </div>
               </div>
 
               <button
                 type="submit"
+                onclick="sendToWhatsApp()"
                 class="w-full bg-gold-500 text-royal-900 font-bold font-serif py-4 hover:bg-cream transition-colors duration-300 mt-4"
               >
                 SEND CONFIRMATION
@@ -1131,6 +1128,28 @@
           },
         });
       });
+
+      function sendToWhatsApp() {
+        var name = document.getElementById("name").value;
+        var people = document.getElementById("people").value;
+
+        var phoneNumber = "9653657621"; // your WhatsApp number (with country code)
+
+        var message =
+          "Namaste 🙏, I am " +
+          name +
+          ". We are happy to confirm our presence at the wedding. Total members attending: " +
+          people +
+          ". Looking forward to your special day!";
+
+        var url =
+          "https://wa.me/" +
+          phoneNumber +
+          "?text=" +
+          encodeURIComponent(message);
+
+        window.open(url, "_blank");
+      }
     </script>
   </body>
 </html>
